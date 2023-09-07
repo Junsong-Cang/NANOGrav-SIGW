@@ -1,0 +1,8 @@
+LgF 	 \log_{10} (f_*/{\mathrm{Hz}})
+LgA 	 \log_{10} A
+S 	 \Delta
+LgK*   \log_{10}(k_*/{\mathrm{Mpc^{-1}}})
+dNeff*   \Delta N_{\mathrm{eff}}
+LgFbh*   \log_{10} f_{\mathrm{bh}}
+LgMc*   \log_{10} (m_{\mathrm{c}}/m_{\odot})
+Sbh*   \sigma_{\mathrm{bh}}
