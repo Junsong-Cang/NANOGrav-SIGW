@@ -47,6 +47,18 @@ f7, h7 = Read_Curve(
     Convert_x = 1,
     Convert_y = 1)
 
+f8, h8 = Read_Curve(
+    File = Curve_Path + '2202.00695.fig1.UHF_GW_Landscape.txt',
+    model = 3,
+    Convert_x = 1,
+    Convert_y = 1)
+
+f9, h9 = Read_Curve(
+    File = Curve_Path + '2202.00695.fig1.DMRadio8.txt',
+    model = 3,
+    Convert_x = 1,
+    Convert_y = 1)
+
 Top = 1e-8
 plt.rcParams.update({'font.family':'Times'})
 plt.rcParams['text.usetex'] = True
@@ -58,6 +70,8 @@ plt.fill_between(f4, h4, Top,color = 'y', alpha=0.3, label='EDGES')
 plt.fill_between(f5, h5, Top,color = 'm', alpha=0.3, label='ADMX')
 plt.fill_between(f6, h6, Top,color = 'c', alpha=0.3, label='SQMS')
 plt.fill_between(f7, h7, Top,color = 'grey', alpha=0.3, label='ARCADE')
+plt.fill_between(f8, h8, Top,color = 'brown', alpha=0.3, label='UHF GW Landscape')
+plt.fill_between(f9, h9, Top,color = 'purple', alpha=0.3, label='DMRadio8')
 
 plt.xscale('log')
 plt.yscale('log')
