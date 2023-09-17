@@ -1,4 +1,4 @@
-from src.merger_module import *
+from src.merger import *
 
 reload = 1
 v = np.logspace(-6, 4, 100)
@@ -7,9 +7,24 @@ FontSize = 15
 nm = 50
 nz = 50
 model = 0
+Use_S2 = 0
 
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
+
+def R2f(R, mc):
+    C = 5.1e4 * (mc/30)**(-32/37)
+    ff = R/C
+    fbh = ff**(37/53)
+    return fbh
+
+f1 = R2f(R = 12, mc = 30)
+f2 = R2f(R = 213, mc = 30)
+#f1 = 1e-2
+#f2 = 1e-3
+
+print(f1)
+print(f2)
 
 v1, g1 = PyLab.Read_Curve(
     File = '/Users/cangtao/cloud/Library/PyLab/Curve_Data/1707.01480.fig2.red_solid_top.txt',
@@ -41,13 +56,13 @@ v4, g4 = PyLab.Read_Curve(
 
 if reload:
     t1 = PyLab.TimeNow()
-    g1_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = model, ncpu = 12, nm = nm, nz = nz, fbh = 1e-2, sbh = 1)
+    g1_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = model, ncpu = 12, nm = nm, nz = nz, Use_S2 = Use_S2, fbh = f1, sbh = 1)
     print('g1_ done')
-    g2_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = model, ncpu = 12, nm = nm, nz = nz, fbh = 1e-2, sbh = 0.05)
+    g2_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = 2, ncpu = 12, nm = nm, nz = nz, Use_S2 = Use_S2, fbh = f1, sbh = 0.05)
     print('g2_ done')
-    g3_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = model, ncpu = 12, nm = nm, nz = nz, fbh = 1e-3, sbh = 1)
+    g3_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = model, ncpu = 12, nm = nm, nz = nz, Use_S2 = Use_S2, fbh = f2, sbh = 1)
     print('g3_ done')
-    g4_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = model, ncpu = 12,nm = nm, nz = nz,  fbh = 1e-3, sbh = 0.05)
+    g4_ = Get_dOmGW_dlnv(mc = 30, v = v, mf_model = 2, ncpu = 12,nm = nm, nz = nz,  Use_S2 = Use_S2, fbh = f2, sbh = 0.05)
     print('g4_ done')
     np.savez('data/OmGW_1707_01480.npz', g1_ = g1_, g2_ = g2_, g3_ = g3_, g4_ = g4_)
     PyLab.Timer(t1)
@@ -63,11 +78,11 @@ plt.rcParams['text.usetex'] = True
 fig, ax = plt.subplots()
 plt.loglog(v1, g1, 'k', linewidth=LineWidth, label = '1707.01480')
 plt.loglog(v, g1_, '--k', linewidth=LineWidth, label = 'my codes')
-plt.loglog(v2, g2, 'r', linewidth=LineWidth)
+plt.loglog(v2, g2, 'r', linewidth=LineWidth, label = '$\sigma = 0$')
 plt.loglog(v, g2_, '--r', linewidth=LineWidth)
 plt.loglog(v3, g3, 'b', linewidth=LineWidth)
 plt.loglog(v, g3_, '--b', linewidth=LineWidth)
-plt.loglog(v4, g4, 'g', linewidth=LineWidth)
+plt.loglog(v4, g4, 'g', linewidth=LineWidth, label = '$\sigma = 0$')
 plt.loglog(v, g4_, '--g', linewidth=LineWidth)
 
 plt.xlabel('$\\nu$ [Hz]',fontsize=FontSize,fontname='Times New Roman')

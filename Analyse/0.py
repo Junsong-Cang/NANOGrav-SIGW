@@ -21,16 +21,13 @@ g.settings.title_limit_fontsize = 14
 
 g.triangle_plot(
     [samples_1 ],
-    # ['LgK', 'LgA', 'S', 'dNeff'],
-    #['LgK', 'LgA', 'S'],
     ['LgF', 'LgA', 'S'],
     width_inch=12,
-    contour_colors=['g', 'r', 'b'],
-    legend_labels=['NG15', 'NG15 + other'],
+    contour_colors=['b'],
+    legend_labels=['NG15'],
     filled = True,
     line_args=[
-        {'lw':1.5,'ls':'-', 'color':'g'},
-        {'lw':1.5,'ls':'-', 'color':'r'},
+        {'lw':1.5,'ls':'-', 'color':'b'},
         ],
     title_limit=1,
     markers={'dNeff': 0.175},

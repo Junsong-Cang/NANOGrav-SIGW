@@ -1,11 +1,13 @@
 # compare my merger rate with 2012.02786
-from src.merger_module_2 import *
+from src.merger_4 import *
 
-reload = 0
+reload = 1
 f = np.logspace(-4, 0, 50)
 
 LineWidth = 2
 FontSize = 18
+nm = 100
+sbh_width = 5
 
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
@@ -25,12 +27,12 @@ f2, R2 = PyLab.Read_Curve(
     Convert_y = 1)
 
 def model_1(fbh):
-    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, sbh_width = 10, nm = 200, show_status = 0)
+    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, sbh_width = sbh_width, nm = nm, show_status = 0)
     PyLab.SaySomething()
     return r
 
 def model_2(fbh):
-    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 2, z = 0, sbh_width = 10, nm = 200, show_status = 0)
+    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 2, z = 0, sbh_width = sbh_width, nm = nm, show_status = 0)
     PyLab.SaySomething()
     return r
 

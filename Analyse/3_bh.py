@@ -1,5 +1,5 @@
-FileRoot = '/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/data/3_GW_Neff_fbh/3_GW_Neff_fbh_'
-ResultFile='/Users/cangtao/Desktop/PBH_posteriors.pdf'
+FileRoot = '/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/data/3_GW_Neff_fbh/3_GW_Neff_fbh_Merger_Rate_1D'
+ResultFile='/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/LaTex/figs/PBH_posteriors.pdf'
 
 # ---- Initialise ----
 import getdist, os
@@ -18,12 +18,13 @@ g.settings.lab_fontsize =15
 
 g.triangle_plot(
     samples,
-    ['LgMc', 'LgFbh', 'Sbh'],
+    ['LgMc', 'LgFbh', 'Sbh', 'R'],
     width_inch=12,
     contour_colors=['blue'],
     filled = True,
     line_args=[{'lw':1.5,'ls':'-', 'color':'k'}],
     title_limit=1,
+    param_limits = {'R': [6, 10], 'LgFbh': [-20, 0]}
     )
 
 g.export(ResultFile)
@@ -48,3 +49,6 @@ for fid in np.arange(1,3):
             m = mc[mid]
             s = sbh[sid]
             print("{0:.4E}".format(f_), "{0:.4E}".format(m), "  {0:.4f}".format(s))
+
+print('Plot saved to :')
+print(ResultFile)

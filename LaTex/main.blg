@@ -1,0 +1,68 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: apsrev.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: refs.bib
+Repeated entry---line 2300 of file refs.bib
+ : @article{Inomata:2018epa
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2316 of file refs.bib
+ : @article{Pi:2020otn
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2331 of file refs.bib
+ : @article{Chen:2021nio
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2365 of file refs.bib
+ : @article{Hutsi:2020sol
+ :                       ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "PLK2015"
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 39 entries,
+            3411 wiz_defined-function locations,
+            1434 strings with 17320 characters,
+and the built_in function-call counts, 27007 in all, are:
+= -- 1565
+> -- 910
+< -- 126
++ -- 733
+- -- 222
+* -- 3718
+:= -- 2952
+add.period$ -- 39
+call.type$ -- 39
+change.case$ -- 157
+chr.to.int$ -- 38
+cite$ -- 39
+duplicate$ -- 2427
+empty$ -- 2274
+format.name$ -- 581
+if$ -- 5101
+int.to.chr$ -- 2
+int.to.str$ -- 40
+missing$ -- 371
+newline$ -- 132
+num.names$ -- 117
+pop$ -- 604
+preamble$ -- 1
+purify$ -- 156
+quote$ -- 0
+skip$ -- 1038
+stack$ -- 0
+substring$ -- 834
+swap$ -- 1914
+text.length$ -- 104
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 232
+warning$ -- 0
+while$ -- 109
+width$ -- 0
+write$ -- 432
+(There were 4 error messages)
