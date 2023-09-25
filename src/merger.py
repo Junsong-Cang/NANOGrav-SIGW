@@ -7,7 +7,6 @@ import scipy.io
 from joblib import Parallel, delayed
 from Useful_Numbers import Cosmology as cosmo
 from Useful_Numbers import Constants as const
-from src.merger_lite_debug import *
 
 # load kummerU template computed by matlab, I donno why but python result is strange!
 # a simple script like this can generate the template:
@@ -21,9 +20,10 @@ end
 save /Users/cangtao/cloud/GitHub/NANOGrav-SIGW/src/kummerU_template.mat fbh_vec U_vec sigma_M
 '''
 
-kummerU_template = scipy.io.loadmat('/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/src/kummerU_template.mat')
-
-print('--------dEdvr has (1+z) term now, check again!!!---------')
+try:
+    kummerU_template = scipy.io.loadmat('/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/src/kummerU_template.mat')
+except:
+    kummerU_template = scipy.io.loadmat('/home/dm/gaolq/cjs/NANOGrav-SIGW/src/kummerU_template.mat')
 
 def Psi(mc, sbh, m, mf_model):
     '''
@@ -49,45 +49,17 @@ def Psi(mc, sbh, m, mf_model):
         result = Phi * C
     return result
 
-def OmGW_2_h(OmGW, f):
-    H0 = 2.192695336552484e-18
-    C = 4 * np.pi**2 /(3 * H0**2)
-    h2 = OmGW/C/f**2
-    if True in h2<0:
-        raise Exception
-    h = h2**0.5
-    return h
-
-def h2_OmGW(h, f):
-    H0 = 2.192695336552484e-18
-    C = 4 * np.pi**2 /(3 * H0**2)
-    OmGW = C * f**2 * h**2
-    return OmGW
-
-def m_ave_fun(mc, sbh, mf_model):
+def m_ave_fun(mc, sbh, mf_model):    
     '''
     Mean of m
-    1 cpu speed: 
-        20000 calls / s (mf_model = 1)
-        2000000 calls / s (mf_model = 0)
     '''
-    sbh_width = 10
-    nm = 2000
     
     if mf_model == 0:
-        u = np.log(mc)
-        x1 = u - sbh_width*sbh
-        x2 = u + sbh_width*sbh
-        x = np.linspace(x1, x2, nm)
-        m = np.exp(x)
-        mf = Psi(mc = mc, sbh = sbh, m = m, mf_model = 0)
-        norm = np.trapz(x = x, y = mf)
-        if abs(norm-1) > 0.1:
-            raise Exception('Mass function is not convergent, please increase precision by setting sbh_width and nm')
-        fun = m*mf
-        result = np.trapz(x = x, y = fun)
+        result = mc * np.exp(- sbh**2/2)
     elif mf_model == 1:
         result = mc*np.exp(sbh**2/2)
+    elif mf_model == 2:
+        result = mc
     return result
 
 def m2_ave_fun(mc, sbh, mf_model):
@@ -128,8 +100,7 @@ def Get_S1_analytic(fbh, m_ave, mc, sbh, M, nm, nv, mf_model):
         if mf_model == 2:
             z4f = mc*v/(m_ave*Ny)
             F = sp.hyp2f1(-0.5, 0.75, 1.25, -9*z4f**2/16) - 1
-            r = F
-            return r
+            return F
         u = np.log(mc)
         x1 = u - sbh_width_s1 * sbh
         x2 = u + sbh_width_s1 * sbh
@@ -161,7 +132,7 @@ def Get_S1_analytic(fbh, m_ave, mc, sbh, M, nm, nv, mf_model):
         r = p1 * p2 *p5
         
         return r
-    
+
     v, fv = PyLab.Map(
         F = int_v_kernel,
         Start = 0,
@@ -173,7 +144,6 @@ def Get_S1_analytic(fbh, m_ave, mc, sbh, M, nm, nv, mf_model):
         Max_Iteration = 50,
         Use_log_x = 0,
         flat_count = 20)
-    
     r = np.trapz(x = np.log(v), y = v * fv)
     
     return r
@@ -267,7 +237,6 @@ def Merger_Rate_Lite(fbh, mc, z, Use_S2, S1_method):
     R0 = 3.14061016E6 * mc**(-32/37) * fbh**(53/37) * (t/t0)**(-34/37)
     S = S_Factor(fbh = fbh, sbh = 0, mc = mc, M = 2*mc, m_ave = mc, m2_ave = mc**2, mf_model = 2, t = t, Use_S2 = Use_S2, S1_method = S1_method)
     R = R0*S
-    #print(t)
     return R
 
 def get_dR_dm1dm2_vec(fbh, mc, sbh, z, mf_model, sbh_width, nm, Use_S2, show_status, Use_interp, S1_method, S_Tab_Len):
@@ -368,7 +337,9 @@ def Merger_Rate_Scale_Factor(z, fbh, Use_S2):
     return r
 
 def Get_dEGW_dv(v, eta, M):
-    
+    '''
+    GW energy spectrum at source
+    '''
     c3 = 299792458.0**3.0
     G = 6.6740831313131E-11
     msun = 1.98847E30
@@ -398,7 +369,7 @@ def Get_dEGW_dv(v, eta, M):
         F = f1/f2
     else:
         F = 0
-    r = (np.pi * G)**(2/3) * (M*msun)**(5/3) * eta * F
+    r = 1/3 * (np.pi * G)**(2/3) * (M*msun)**(5/3) * eta * F
     return r
 
 def Get_OmGW_Lite(fbh, mc, v_vec, Use_S2, S1_method, nz, Precision, ncpu, show_status):
@@ -418,13 +389,10 @@ def Get_OmGW_Lite(fbh, mc, v_vec, Use_S2, S1_method, nz, Precision, ncpu, show_s
             z = zp[idx] - 1
             R = Merger_Rate_Lite(fbh = fbh, mc = mc, z = z, Use_S2 = Use_S2, S1_method = S1_method)
             vr = v*(1+z)
-            dEGW_dvr = Get_dEGW_dv(v = vr, eta = 1/4, M = 2 * mc)/(1+z)
-            # dEGW_dvr = Get_dEGW_dv(v = vr, eta = 1/4, M = 2 * mc)
+            dEGW_dvr = Get_dEGW_dv(v = vr, eta = 1/4, M = 2 * mc)
             
             H = PyLab.Hubble(z=z)
 
-            # dOmGW_dz[idx] = v/RhoCrC2 * R * dEGW_dvr / (H*(1+z))
-            # print('debugging, a factor of (1+z) is missing')
             dOmGW_dz[idx] = v/RhoCrC2 * R * dEGW_dvr / (H*(1+z))
         
         dOmGW_dlnzp = zp*dOmGW_dz/Gpc3yr
@@ -463,6 +431,7 @@ def Get_OmGW_Lite(fbh, mc, v_vec, Use_S2, S1_method, nz, Precision, ncpu, show_s
             r[idx] = Find_OmGW(v = v_vec[idx])
     else:
         r = Parallel(n_jobs=ncpu)(delayed(Find_OmGW)(v) for v in v_vec)
+        r = np.array(r)
     
     return r
 
@@ -506,8 +475,7 @@ def dOmGW_dlnv_kernel_fast(v, nz, dR0_dm1dm2_info, z_info):
                 dR_dlnm1_dlnm2 = dRdm1dm2 * m1 * m2
                 M = m1 + m2
                 eta = m1*m2/M**2
-                dEGW_dvr = Get_dEGW_dv(v = vr, eta = eta, M = M)/(1+z_)
-                # dEGW_dvr = Get_dEGW_dv(v = vr, eta = eta, M = M)
+                dEGW_dvr = Get_dEGW_dv(v = vr, eta = eta, M = M)
                 
                 dOmGW_dlnm1_dlnm2_dz[mid_2] = v/RhoCrC2 * dR_dlnm1_dlnm2 * dEGW_dvr/((1+z_)*H)
             
@@ -550,9 +518,8 @@ def Get_dOmGW_dlnzp(zp, v, fbh, Use_S2, Table):
 
                 M = m1 + m2
                 eta = m1*m2/M**2
-                # dEGW_dvr = Get_dEGW_dv(v = vr, eta = eta, M = M)
-                dEGW_dvr = Get_dEGW_dv(v = vr, eta = eta, M = M)/(1+z_)
-
+                dEGW_dvr = Get_dEGW_dv(v = vr, eta = eta, M = M)
+                
                 f2[mid_2] = dR_dlnm1dlnm2 * dEGW_dvr
             
             f1[mid_1] = np.trapz(x = lnm, y = f2)
@@ -640,7 +607,7 @@ def Merger_Rate(
         z = 0, 
         mf_model = 1, 
         sbh_width = 10, 
-        nm = 200,
+        nm = 100,
         Use_S2 = 0, 
         S1_method = 0,
         Use_interp = 1,
@@ -695,7 +662,7 @@ def Get_dOmGW_dlnv(
         sbh = 1.0, 
         v = np.logspace(-6, 4, 50), 
         mf_model = 0, 
-        sbh_width = 10, 
+        sbh_width = 7, 
         nm = 200,
         nz = 100,
         zmax = 50,
@@ -708,11 +675,6 @@ def Get_dOmGW_dlnv(
         Precision = 1e-2,
         ncpu = 1):
     '''
-    What to feed to dOmGW_dlnv_kernel_fast:
-    z_vec
-    H
-    z_factor
-    do Gpcyr outside
     '''
     t1 = PyLab.TimeNow()
     if mf_model == 2:

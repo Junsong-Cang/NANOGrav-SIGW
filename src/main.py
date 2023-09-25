@@ -67,11 +67,12 @@ def Power_Spectra(A = 1.0, kc = 1.0, Sigma = 1.0, k = np.logspace(-3, 3, 100)):
     '''
     Nomrlised PS model in NanoGrav15 New physics Paper
     '''
+    S = Sigma
     x = np.log(k)
     xc = np.log(kc)
-    y1 = ((x - xc)/Sigma)**2
+    y1 = ((x - xc)/S)**2
     y2 = np.exp(-y1/2)
-    Norm = np.sqrt(2*np.pi*Sigma**2)
+    Norm = np.sqrt(2*np.pi*S**2)
     r = A*y2/Norm
     return r
 

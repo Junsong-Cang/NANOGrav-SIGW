@@ -1,7 +1,7 @@
 # compare my merger rate with 2012.02786
 from src.merger import *
 
-reload = 0
+reload = 1
 
 f = np.logspace(-4, 0, 50)
 
@@ -19,7 +19,7 @@ f1, r1 = PyLab.Read_Curve(
     Convert_y = 1)
 
 def model_1(fbh):
-    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, mf_model = 1, sbh_width = 6, nm = 200, Use_S2 = 1, S1_method = 1, Use_interp = 1, S_Tab_Len = 200)
+    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, mf_model = 1, sbh_width = 6, nm = 200, Use_S2 = 1, S1_method = 0, Use_interp = 1, S_Tab_Len = 200)
     PyLab.SaySomething()
     return r
 
@@ -31,7 +31,7 @@ f2, r2 = PyLab.Read_Curve(
     Convert_y = 1)
 
 def model_2(fbh):
-    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.02, z = 0, mf_model = 2, sbh_width = 6, nm = 200, Use_S2 = 1, S1_method = 1, Use_interp = 1, S_Tab_Len = 200)
+    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.02, z = 0, mf_model = 2, sbh_width = 6, nm = 200, Use_S2 = 1, S1_method = 0, Use_interp = 1, S_Tab_Len = 200)
     PyLab.SaySomething()
     return r
 
@@ -43,7 +43,7 @@ f3, r3 = PyLab.Read_Curve(
     Convert_y = 1)
 
 def model_3(fbh):
-    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, mf_model = 0, sbh_width = 6, nm = 200, Use_S2 = 0, S1_method = 1, Use_interp = 1, S_Tab_Len = 200)
+    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, mf_model = 0, sbh_width = 6, nm = 200, Use_S2 = 0, S1_method = 0, Use_interp = 1, S_Tab_Len = 200)
     PyLab.SaySomething()
     return r
 
@@ -55,7 +55,7 @@ f4, r4 = PyLab.Read_Curve(
     Convert_y = 1)
 
 def model_4(fbh):
-    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 2, z = 0, mf_model = 0, sbh_width = 6, nm = 200, Use_S2 = 0, S1_method = 1, Use_interp = 1, S_Tab_Len = 200)
+    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 2, z = 0, mf_model = 0, sbh_width = 6, nm = 200, Use_S2 = 0, S1_method = 0, Use_interp = 1, S_Tab_Len = 200)
     PyLab.SaySomething()
     return r
 
@@ -67,7 +67,7 @@ f5, r5 = PyLab.Read_Curve(
     Convert_y = 1)
 
 def model_5(fbh):
-    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, mf_model = 2, sbh_width = 6, nm = 200, Use_S2 = 0, S1_method = 1, Use_interp = 1, S_Tab_Len = 200)
+    r = Merger_Rate(fbh = fbh, mc = 20, sbh = 0.6, z = 0, mf_model = 2, sbh_width = 6, nm = 200, Use_S2 = 0, S1_method = 0, Use_interp = 1, S_Tab_Len = 200)
     PyLab.SaySomething()
     return r
 

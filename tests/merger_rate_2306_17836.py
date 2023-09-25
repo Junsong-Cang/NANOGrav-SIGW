@@ -45,7 +45,7 @@ plt.rcParams.update({'font.family':'Times'})
 plt.rcParams['text.usetex'] = True
 fig, ax = plt.subplots()
 
-plt.loglog(1+z, r0, '-k', linewidth=LineWidth, label = 'Paper')
+plt.loglog(1+z, r0, '-k', linewidth=LineWidth, label = '2306.17836')
 plt.loglog(1+z, r1, '-r', linewidth=LineWidth, label = 'My codes')
 
 plt.xlabel('$1+z$',fontsize=FontSize,fontname='Times New Roman')

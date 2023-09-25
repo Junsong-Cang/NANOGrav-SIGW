@@ -1,6 +1,6 @@
 from src.merger import *
 
-reload = 1
+reload = 0
 v = np.logspace(-3, 10, 100)
 
 LineWidth = 2
@@ -20,16 +20,16 @@ def model(f, m, s):
         v = v,
         mf_model = 0,
         sbh_width = 7,
-        nm = 50,
+        nm = 200,
         nz = 100,
         show_status = 0,
         Use_interp = 1,
         S1_method = 0,
         Fast = 0,
-        S_Tab_Len = 200,
+        S_Tab_Len = 2000,
         Use_S2 = 1,
         Precision = 0,
-        ncpu = 12)
+        ncpu = 11)
     return r
 
 if reload:
@@ -68,9 +68,9 @@ for fid in np.arange(1,3):
                 f = fbh[fid]
                 m = mc[mid]
                 s = sbh[sid]
-                # print("{0:.4E}".format(f), "{0:.4E}".format(m), "  {0:.4f}".format(s))
+                print("{0:.4E}".format(f), "{0:.4E}".format(m), "  {0:.4f}".format(s))
                 label.append( "{0:.0E},".format(f) +  " {0:.0E},".format(m) +  " {0:.1f}".format(s))
-                print(label)
+                # print(label)
                 
 plt.rcParams.update({'font.family':'Times'})
 plt.rcParams['text.usetex'] = True
@@ -111,6 +111,7 @@ plt.loglog(v, r0[7,:], '|',linewidth=LineWidth)
 #plt.loglog(v, r0[8,:], 'purple', '+', linewidth=LineWidth)
 plt.loglog(v, r0[8,:], '|', linewidth=LineWidth)
 
+
 plt.xlabel('$\\nu$ [Hz]',fontsize=FontSize,fontname='Times New Roman')
 plt.ylabel('$\Omega_{\mathrm{GW}}$',fontsize=FontSize,fontname='Times New Roman')
 plt.legend(fontsize = FontSize,loc='center left', bbox_to_anchor=(1, 0.5))
@@ -135,4 +136,4 @@ d[0,:] = v[:]
 d[1:10, :] = r[:,:]
 
 np.savetxt(fname = file, X = d, fmt = '%.8E', delimiter = '    ')
-plt.show()
+# plt.show()

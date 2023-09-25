@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.8)  17 SEP 2023 12:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.8)  25 SEP 2023 13:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -417,7 +417,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip65
 )
-LaTeX Info: Redefining \r on input line 138.
+LaTeX Info: Redefining \r on input line 139.
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
@@ -427,28 +427,28 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 149.
-LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
 Class revtex4 Info: Unrecognized LaTeX tabular. Please update this document cla
-ss! (Proceeding with fingers crossed.) on input line 149.
-Class revtex4 Info: cite was not loaded (OK!) on input line 149.
-Class revtex4 Info: multicol was not loaded (OK!) on input line 149.
+ss! (Proceeding with fingers crossed.) on input line 150.
+Class revtex4 Info: cite was not loaded (OK!) on input line 150.
+Class revtex4 Info: multicol was not loaded (OK!) on input line 150.
 
 (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -476,141 +476,150 @@ e
 Package hyperref Warning: Height of page (\paperheight) is invalid (0.0pt),
 (hyperref)                using 11in.
 
-Package hyperref Info: Link coloring ON on input line 149.
+Package hyperref Info: Link coloring ON on input line 150.
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 172
+LaTeX Font Info:    Trying to load font information for U+msa on input line 171
 .
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 172
+LaTeX Font Info:    Trying to load font information for U+msb on input line 171
 .
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 2057) in paragraph at lines 182--184
+Underfull \hbox (badness 2057) in paragraph at lines 195--204
 []\OT1/cmr/m/n/10 The pri-mor-dial black hole can be su-per-mas-sive,
  []
 
-
-Package natbib Warning: Citation `PLK2015' on page 1 undefined on input line 19
-0.
-
 [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (7.96892pt too wide) detected at line 276
+Overfull \hbox (0.7566pt too wide) in paragraph at lines 652--667
+ []$[]$ 
+ []
+
+
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./figs/param_posteriors.pdf)
+: PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<figs/param_posteriors.pdf, id=143, 734.24312pt x 738.62651pt>
+File: figs/param_posteriors.pdf Graphic file (type pdf)
+<use figs/param_posteriors.pdf>
+Package pdftex.def Info: figs/param_posteriors.pdf  used on input line 679.
+(pdftex.def)             Requested size: 241.84842pt x 243.2854pt.
+<figs/PBH_posteriors_Full.pdf, id=144, 562.20035pt x 571.6828pt>
+File: figs/PBH_posteriors_Full.pdf Graphic file (type pdf)
+<use figs/PBH_posteriors_Full.pdf>
+Package pdftex.def Info: figs/PBH_posteriors_Full.pdf  used on input line 679.
+(pdftex.def)             Requested size: 241.84842pt x 245.9322pt.
+[2{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+}]
+<figs/Merger_GW_posteriors.pdf, id=194, 462.52798pt x 346.89601pt>
+File: figs/Merger_GW_posteriors.pdf Graphic file (type pdf)
+<use figs/Merger_GW_posteriors.pdf>
+Package pdftex.def Info: figs/Merger_GW_posteriors.pdf  used on input line 737.
+
+(pdftex.def)             Requested size: 241.84842pt x 181.38737pt.
+<figs/Merger_rate_posteriors.pdf, id=195, 462.52798pt x 346.89601pt>
+File: figs/Merger_rate_posteriors.pdf Graphic file (type pdf)
+<use figs/Merger_rate_posteriors.pdf>
+Package pdftex.def Info: figs/Merger_rate_posteriors.pdf  used on input line 73
+7.
+(pdftex.def)             Requested size: 241.84842pt x 181.38737pt.
+ [3 <./figs/param_posteriors.pdf> <./figs/PBH_posteriors_Full.pdf>]
+<figs/SIGW_posteriors.pdf, id=381, 462.52798pt x 346.89601pt>
+File: figs/SIGW_posteriors.pdf Graphic file (type pdf)
+<use figs/SIGW_posteriors.pdf>
+Package pdftex.def Info: figs/SIGW_posteriors.pdf  used on input line 1102.
+(pdftex.def)             Requested size: 241.84842pt x 181.38737pt.
+<figs/Phi_compare.pdf, id=386, 462.52798pt x 346.89601pt>
+File: figs/Phi_compare.pdf Graphic file (type pdf)
+<use figs/Phi_compare.pdf>
+Package pdftex.def Info: figs/Phi_compare.pdf  used on input line 1117.
+(pdftex.def)             Requested size: 241.84842pt x 181.38737pt.
+ [4 <./figs/Merger_GW_posteriors.pdf> <./figs/Merger_rate_posteriors.pdf>]
+
+LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
+ on input line 1148.
+
+
+Overfull \hbox (7.96892pt too wide) detected at line 1199
 [][][]\OML/cmm/m/it/10 m \OT1/cmr/m/n/10 = 2\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 4
 3 \OMS/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 10[] [] [][] [][] \OML/cmm/m/it/10 m[];
  []
 
-
-Package hyperref Warning: Ignoring empty anchor on input line 416.
-
-[2]
-<figs/param_posteriors.pdf, id=193, 734.24312pt x 738.627pt>
-File: figs/param_posteriors.pdf Graphic file (type pdf)
-<use figs/param_posteriors.pdf>
-Package pdftex.def Info: figs/param_posteriors.pdf  used on input line 748.
-(pdftex.def)             Requested size: 241.84842pt x 243.28557pt.
-<figs/PBH_posteriors.pdf, id=194, 730.22812pt x 738.65836pt>
-File: figs/PBH_posteriors.pdf Graphic file (type pdf)
-<use figs/PBH_posteriors.pdf>
-Package pdftex.def Info: figs/PBH_posteriors.pdf  used on input line 748.
-(pdftex.def)             Requested size: 241.84842pt x 244.63715pt.
-<figs/Merger_rate_posteriors.pdf, id=195, 462.52798pt x 346.89601pt>
-File: figs/Merger_rate_posteriors.pdf Graphic file (type pdf)
-<use figs/Merger_rate_posteriors.pdf>
-Package pdftex.def Info: figs/Merger_rate_posteriors.pdf  used on input line 76
-6.
-(pdftex.def)             Requested size: 241.84842pt x 181.38737pt.
-<figs/Merger_GW_posteriors.pdf, id=196, 462.52798pt x 346.89601pt>
-File: figs/Merger_GW_posteriors.pdf Graphic file (type pdf)
-<use figs/Merger_GW_posteriors.pdf>
-Package pdftex.def Info: figs/Merger_GW_posteriors.pdf  used on input line 766.
-
-(pdftex.def)             Requested size: 241.84842pt x 181.38737pt.
- [3{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
-c}] [4 <./figs/param_posteriors.pdf> <./figs/PBH_posteriors.pdf> <./figs/Merger
-_rate_posteriors.pdf> <./figs/Merger_GW_posteriors.pdf>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 876.
+(./main.bbl [5 <./figs/SIGW_posteriors.pdf> <./figs/Phi_compare.pdf>]
+Underfull \hbox (badness 1163) in paragraph at lines 37--47
+ []\OT1/cmr/m/n/9 S. Bird, I. Cho-lis, J. B. Mu~noz, Y. Ali-Ha^^?^^Pmoud,
+ []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Omega' on input line 876.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 876.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 876.
-
-(./main.bbl
-Underfull \hbox (badness 3525) in paragraph at lines 60--69
+Underfull \hbox (badness 3525) in paragraph at lines 144--153
  []\OT1/cmr/m/n/9 H. Mid-dle-ton, A. Sesana, S. Chen, A. Vec-chio,
  []
 
 
-Underfull \hbox (badness 3579) in paragraph at lines 195--197
+Underfull \hbox (badness 1365) in paragraph at lines 208--213
+ []\OT1/cmr/m/n/9 N. Planck Col-lab-o-ra-tion, Aghanim et al. (Planck),
+ []
+
+
+Underfull \hbox (badness 1281) in paragraph at lines 220--224
+ []\OT1/cmr/m/n/9 S. Kawa-mura et al., PTEP \OT1/cmr/bx/n/9 2021\OT1/cmr/m/n/9 
+, 05A105 (2021),
+ []
+
+
+Underfull \hbox (badness 3579) in paragraph at lines 394--396
  []\OT1/cmr/m/n/9 B. Wal-lisch, Ph.D. the-sis, Cam-bridge U. (2018),
  []
 
-[5])
-
-Package natbib Warning: There were undefined citations.
-
-[6] (./main.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+) [6] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FB91EE96912BA0D43D25C5F248F00DBD;1195.
+(rerunfilecheck)             Checksum: B16F20E3B841AF70CF42F7EA5E3F6BF4;434.
  ) 
 Here is how much of TeX's memory you used:
- 12390 strings out of 476025
- 190972 string characters out of 5790018
- 1887388 words of memory out of 5000000
- 32556 multiletter control sequences out of 15000+600000
- 525778 words of font info for 82 fonts, out of 8000000 for 9000
+ 12469 strings out of 476025
+ 193188 string characters out of 5790018
+ 1909388 words of memory out of 5000000
+ 32632 multiletter control sequences out of 15000+600000
+ 525957 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,76p,1187b,667s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,76p,2074b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
 usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
-sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/
-local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/lo
-cal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loca
-l/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/
-texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/te
-xlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texli
-ve/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
-2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/202
-3/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2023/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2023/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2023/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2023/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2023/texmf-dist/fonts
-/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/t
-ype1/urw/symbol/usyr.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/ti
-mes/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on main.pdf (6 pages, 1091810 bytes).
+sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb>
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr
+/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/loca
+l/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
+exlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
+ive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
+/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/20
+23/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
+3/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2023/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2023/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2023/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texm
+f-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-
+dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2023/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/
+times/utmri8a.pfb>
+Output written on main.pdf (6 pages, 1988899 bytes).
 PDF statistics:
- 535 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
- 99 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 663 PDF objects out of 1000 (max. 8388607)
+ 460 compressed objects within 5 object streams
+ 100 named destinations out of 1000 (max. 500000)
+ 47 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -54,4 +54,4 @@ else:
   # Print mcmc info
   info = [p1_info, p2_info, p3_info]
   print_mcmc_info(FileRoot, info)
-  Add_derived_param(FileRoot = FileRoot)
+  Add_derived_param(FileRoot = FileRoot, Add_Fbh = 1)

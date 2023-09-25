@@ -6,7 +6,7 @@ reload = 1
 LineWidth = 2
 FontSize = 18
 
-Use_S2 = 1
+Use_S2 = 0
 S1_method = 0
 fbh = 5e-3
 fid = 5
@@ -14,8 +14,6 @@ m = 1e12
 scale = 1
 
 nz = 100
-zmax = 5000
-zmax = 10
 
 import matplotlib.pyplot as plt
 h2 = 0.6766**2
@@ -34,23 +32,22 @@ v1, g1 = PyLab.Read_Curve(
     model = 2,
     Convert_x = 1,
     Convert_y = 1)
-
 g1_ = Get_dOmGW_dlnv(
         fbh = fbh, 
         mc = m,
-        sbh = 0.02, 
+        sbh = 1.0, 
         v = v1,
         mf_model = 2, 
-        sbh_width = 10, 
-        nm = 200,
-        nz = nz,
-        zmax = zmax,
+        nz = 100,
         show_status = 0,
         Use_interp = 1,
-        S1_method = S1_method,
-        S_Tab_Len = 200,
+        S1_method = 0,
+        Fast = 0,
         Use_S2 = Use_S2,
-        ncpu = 1)
+        Precision = 1e-2,
+        ncpu = 12)
+
+print(g1_)
 g1_ = g1_*h2
 
 plt.rcParams.update({'font.family':'Times'})
@@ -77,16 +74,3 @@ plt.legend(fontsize=FontSize,loc = 'upper left')
 plt.tight_layout()
 
 plt.savefig('/Users/cangtao/Desktop/tmp.png', dpi=1000)
-dif = np.sum(g1_/g1)/len(g1)
-print(dif)
-
-
-n = len(v1)
-file = '/Users/cangtao/Desktop/tmp.txt'
-
-d = np.zeros((n, 3))
-d[:,0] = v1[:]
-d[:,1] = g1[:]
-d[:,2] = g1_[:]
-
-np.savetxt(fname = file, X = d, fmt = '%.8E', delimiter = '    ')
