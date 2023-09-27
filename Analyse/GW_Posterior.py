@@ -1,60 +1,166 @@
 from PyLab import *
 
 Use_Log = 0
-reload = 0
+
+reload_posterior = 0
+reload_best_fit = 0
+reload_samples = 0
+
 FileRoot_3 = '/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/data/3_GW_Neff_fbh/3_GW_Neff_fbh_'
 FileRoot_4 = '/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/data/4_GW_Neff_fbh_01/4_GW_Neff_fbh_01_'
 ResultFile='/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/LaTex/figs/Merger_GW_posteriors.pdf'
+
 v = np.logspace(-3, 10, 80)
 
 LineWidth = 2
 FontSize = 16
+ncpu = 12
+best_params = np.array(
+    [[0.1, 10**-3.589, 0.54],
+    [0.1, 10**-3.589, 0.01],
+    [0.1, 10**-3.589, 1],
+    [0.1, 10**-3.589, 2]])
 
-Tab_30 = np.loadtxt(FileRoot_3 + 'GW_0.txt')
-Tab_31 = np.loadtxt(FileRoot_3 + 'GW_1.txt')
-Tab_40 = np.loadtxt(FileRoot_4 + 'GW_0.txt')
-Tab_41 = np.loadtxt(FileRoot_4 + 'GW_1.txt')
 nv = len(v)
 
-def kernel(theta, type):
-    '''
-    Read GW from computed tables
-    '''
+from src.merger import *
 
-    lf, lm, sbh = theta[5], theta[6], theta[7]
+# ---- samples ----
+if reload_samples:
 
-    if type == 30:
-        Tab = Tab_30
-    elif type == 31:
-        Tab = Tab_31
-    elif type == 40:
-        Tab = Tab_40
-    else:
-        Tab = Tab_41
+    def Get_params(idx, sample):
+        if sample == 3:
+            File = FileRoot_3 + '.txt'
+        elif sample == 4:
+            File = FileRoot_4 + '.txt'
+        Tab = np.loadtxt(File)
+        chain = Tab[idx,:]
+        fbh = 10**chain[7]
+        mc = 10**chain[8]
+        sbh = chain[9]
+        r = fbh, mc, sbh
+        return r
     
-    lf_vec = Tab[:,0]
-    lm_vec = Tab[:,1]
-    sbh_vec = Tab[:,2]
-    dist = (lf - lf_vec)**2 + (lm - lm_vec)**2 + (sbh - sbh_vec)**2
-    idx = np.argmin(dist)
-    r = Tab[idx, 3 : 3+nv]
-    if Use_Log:
-        r = np.log10(r)
-    return r
+    def model(idx, sample, Use_S2):
+        fbh, mc, sbh = Get_params(idx = idx, sample = sample)
+        GW = Get_dOmGW_dlnv(
+            fbh = fbh,
+            mc = mc,
+            sbh = sbh, 
+            v = v,
+            mf_model = 0, 
+            sbh_width = 7, 
+            nm = 50,
+            nz = 50,
+            show_status = 0,
+            Use_interp = 1,
+            S1_method = 0,
+            Fast = 0,
+            S_Tab_Len = 200,
+            Use_S2 = Use_S2,
+            Precision = 1e-2,
+            ncpu = 1)
+        r = np.zeros(len(v) + 3)
+        r[0] = np.log10(fbh)
+        r[1] = np.log10(mc)
+        r[2] = sbh
+        for id in np.arange(3, len(v) + 3):
+            r[id] = GW[id - 3]
+        if sample == 3:
+            PyLab.SaySomething('tmp_3.txt')
+        else:
+            PyLab.SaySomething('tmp_4.txt')
+        return r
+    
+    n3 = len(np.loadtxt(FileRoot_3 + '.txt'))
+    n4 = len(np.loadtxt(FileRoot_4 + '.txt'))
+    t1 = PyLab.TimeNow()
+    r30 = Parallel(n_jobs = ncpu)(delayed(model)(idx = idx, sample = 3, Use_S2 = 0) for idx in np.arange(0, n3))
+    r31 = Parallel(n_jobs = ncpu)(delayed(model)(idx = idx, sample = 3, Use_S2 = 1) for idx in np.arange(0, n3))
+    r40 = Parallel(n_jobs = ncpu)(delayed(model)(idx = idx, sample = 4, Use_S2 = 0) for idx in np.arange(0, n4))
+    r41 = Parallel(n_jobs = ncpu)(delayed(model)(idx = idx, sample = 4, Use_S2 = 1) for idx in np.arange(0, n4))
+    PyLab.Timer(t1)
+    np.savez('data/GW_Samples.npz', r30 = r30, r31 = r31, r40 = r40, r41 = r41)
 
-def model_30(theta):
-    return(kernel(theta, 30))
+# ---- best fit ----
+if reload_best_fit:
+    
+    N = len(best_params)
+    r = np.zeros((N,nv))
+    t1 = TimeNow()
+    for idx in np.arange(0,N):
+        print(idx)
+        params = best_params[idx]
+        fbh, mc, sbh = params
+        if sbh < 0.02:
+            mf = 2
+        else:
+            mf = 0
+        g = Get_dOmGW_dlnv(
+            fbh = fbh, 
+            mc = mc,
+            sbh = sbh, 
+            v = v,
+            mf_model = mf, 
+            sbh_width = 7, 
+            nm = 100,
+            nz = 100,
+            zmax = 5000,
+            show_status = 0,
+            Use_interp = 1,
+            S1_method = 0,
+            Fast = 0,
+            S_Tab_Len = 200,
+            Use_S2 = 0,
+            Precision = 0.0,
+            ncpu = 12)
+        r[idx,:] = g[:]
+    Timer(t1)
+    np.savez('data/GW_best_fit.npz', r = r)
 
-def model_31(theta):
-    return(kernel(theta, 31))
+# ---- posterior ----
 
-def model_40(theta):
-    return(kernel(theta, 40))
+if reload_posterior:
 
-def model_41(theta):
-    return(kernel(theta, 41))
+    NPZ_Sample = np.load('data/GW_Samples.npz')
+    Tab_30 = NPZ_Sample['r30']
+    Tab_31 = NPZ_Sample['r31']
+    Tab_40 = NPZ_Sample['r40']
+    Tab_41 = NPZ_Sample['r41']
 
-if reload:
+    def kernel(theta, type):
+        '''
+        Read GW from computed tables
+        '''
+        if type == 30:
+            Tab = Tab_30
+        elif type == 31:
+            Tab = Tab_31
+        elif type == 40:
+            Tab = Tab_40
+        elif type == 41:
+            Tab = Tab_41
+        lf, lm, sbh = theta[5], theta[6], theta[7]
+        lf_vec = Tab[:,0]
+        lm_vec = Tab[:,1]
+        sbh_vec = Tab[:,2]
+        dist = (lf - lf_vec)**2 + (lm - lm_vec)**2 + (sbh - sbh_vec)**2
+        idx_min = np.argmin(dist)
+        r = Tab[idx_min, 3:]        
+        return r
+
+    def model_30(theta):
+        return(kernel(theta, 30))
+
+    def model_31(theta):
+        return(kernel(theta, 31))
+
+    def model_40(theta):
+        return(kernel(theta, 40))
+
+    def model_41(theta):
+        return(kernel(theta, 41))
+
     # Get posterior
     P30 = mcmc_derived_stat(model_function = model_30, FileRoot = FileRoot_3, ncpu = 10, print_status=1)
     P31 = mcmc_derived_stat(model_function = model_31, FileRoot = FileRoot_3, ncpu = 10, print_status=1)
@@ -197,19 +303,6 @@ plt.rcParams.update({'font.family':'Times'})
 plt.rcParams['text.usetex'] = True
 fig, ax = plt.subplots()
 
-'''
-plt.loglog(f8, h8, 'r')
-plt.loglog(f9, h9, 'r')
-plt.loglog(f10, h10, 'r')
-plt.loglog(f11, h11, 'r')
-plt.loglog(f12, h12, 'b', label = 'ADMX')
-plt.loglog(f13, h13, 'k', label = 'SQMS')
-plt.loglog(f14, h14, 'r')
-plt.legend(fontsize=FontSize,loc = 'upper left')
-
-plt.show()
-'''
-
 # Confidence regions
 
 idx = 6
@@ -220,8 +313,11 @@ plt.fill_between(v_, P41[3,::idx], P41[4,::idx],color = 'b',alpha = 0.6,label = 
 plt.fill_between(v_, P40[4,::idx], P30[4,::idx], color = 'grey',alpha=0.5, linestyle = 'dashed')
 
 # Best-fit
-GW_1d = np.load('data/4_merger_GW.npz')
-v4 = GW_1d['v']
+GW_1d = np.load('data/GW_best_fit.npz')
+
+# GW_1d = np.load('data/4_merger_GW.npz')
+# v4 = GW_1d['v']
+v4 = v
 r4 = GW_1d['r']
 plt.plot(v4, r4[0,:], 'k', linewidth = LineWidth)
 plt.plot(v4, r4[1,:], '--k', linewidth = LineWidth)
@@ -238,7 +334,6 @@ plt.fill_between(f4, g4, Top, color = 'g', alpha = 0.45, linestyle = 'solid')
 plt.fill_between(f6, g6, Top, color = 'r', alpha = 0.3, linestyle = 'dashed')
 plt.fill_between(f18, g18, Top, color = 'c', alpha = 0.4, linestyle = 'dashed')
 plt.fill_between(f17, g17, Top, color = 'b', alpha = 0.3, linestyle = 'solid')
-
 
 # Now add texts
 # plt.text(4e8, 1e-11, "$f_{\mathrm{bh}} < 1$", size=FontSize/1.3, rotation = -60,color='k')
@@ -305,3 +400,4 @@ print(ResultFile)
 
 print(len(v_))
 
+# plt.show()

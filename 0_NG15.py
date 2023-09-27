@@ -1,15 +1,9 @@
 # Sample NG15 data with no additional priors
 
 FileRoot = '/Users/cangtao/cloud/GitHub/NANOGrav-SIGW/data/0_NG15/0_NG15_'
-p1_info = {'name':'LgF', 'min':-8, 'max':-5.8, 'latex':'\log_{10} (f_*/{\mathrm{Hz}})'}
-p2_info = {'name':'LgA', 'min':-1.8, 'max':0, 'latex':'\log_{10} A'}
-p3_info = {'name':'S', 'min':0.02, 'max':4, 'latex':'\Delta'}
-
-'''
-p1_info = {'name':'LgF', 'min':-10.5, 'max':-5, 'latex':'\log_{10} (f_*/{\mathrm{Hz}})'}
+p1_info = {'name':'LgF', 'min':-11, 'max':-5, 'latex':'\log_{10} (f_*/{\mathrm{Hz}})'}
 p2_info = {'name':'LgA', 'min':-3, 'max':1, 'latex':'\log_{10} A'}
-p3_info = {'name':'S', 'min':0.02, 'max':3, 'latex':'\Delta'}
-'''
+p3_info = {'name':'S', 'min':0.1, 'max':3, 'latex':'\Delta'}
 
 ndim = 3
 

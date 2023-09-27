@@ -31,7 +31,11 @@ g.triangle_plot(
         ],
     title_limit=1,
     markers={'dNeff': 0.175},
-    param_limits = {'dNeff': [0, 0.5]}
+    param_limits = {
+        'LgF': [-11, -5],
+        'LgA': [-3, 1],
+        'S': [0.1, 3]
+        }
     )
 
 g.export(ResultFile)
