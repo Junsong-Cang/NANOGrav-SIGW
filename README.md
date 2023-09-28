@@ -5,4 +5,5 @@ dependencies:
     JSC version of PyLab, not to be confused with the pip version, which has now been deappreciated
     github repo url:
     https://github.com/Junsong-Cang/PyLab.git
-    contact cangjunsong@outlook if you encounter any problems in getting the codes running
+
+There are also lots of local dependencies, contact cangjunsong@outlook if you encounter any problems in getting the codes running
